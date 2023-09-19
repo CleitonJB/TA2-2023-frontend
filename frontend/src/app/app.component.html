@@ -1,0 +1,63 @@
+<div id="app-page">
+  <!--* Toolbar -->
+  <mat-toolbar id="main-toolbar">
+    <button [disabled]="currentUser == null" (click)="drawer.toggle()" mat-icon-button aria-label="Menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span id="toolbar-title">TGP</span>
+
+    <!--* Espaçamento -->
+    <span class="example-spacer"></span>
+    
+    <!--* Cumprimento -->
+    <span id="time-period-message" *ngIf="currentUser != null">{{ periodMessage }}, {{ currentUser.name }}!</span>
+
+    <!--* Espaçamento -->
+    <span class="example-spacer"></span>
+
+    <button *ngIf="currentUser != null" (click)="logout()" mat-icon-button aria-label="Logout icon">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <!--* Page content -->
+  <mat-drawer-container class="example-container" autosize>
+    <!--* Side Menu -->
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+      <!--* Perfil -->
+      <button (click)="navigateTo('/profile')" class="menu-item" aria-label="Profile icon">
+        <mat-icon>person</mat-icon>
+        <span>Perfil</span>
+      </button>
+
+      <!--* Users -->
+      <button *ngIf="currentUser?.role == ROLES.Diretor || currentUser?.role == ROLES.Gerente" (click)="navigateTo('/user')" class="menu-item" aria-label="Users icon">
+        <mat-icon>groups</mat-icon>
+        <span>Usuários</span>
+      </button>
+
+      <!--* Roles -->
+      <button *ngIf="currentUser?.role == ROLES.Diretor || currentUser?.role == ROLES.Gerente" (click)="navigateTo('/role')" class="menu-item" aria-label="Role icon">
+        <mat-icon>psychology</mat-icon>
+        <span>Roles</span>
+      </button>
+
+      <!--* Funcionalidades -->
+      <button *ngIf="currentUser?.role == ROLES.Diretor || currentUser?.role == ROLES.Gerente" (click)="navigateTo('/funcionalidade')" class="menu-item" aria-label="Funcionalidades icon">
+        <mat-icon>account_tree</mat-icon>
+        <span>Funcionalidades</span>
+      </button>
+
+      <!--* Autorizações -->
+      <button *ngIf="currentUser?.role == ROLES.Diretor || currentUser?.role == ROLES.Gerente" (click)="navigateTo('/autorizacao')" class="menu-item" aria-label="Autorizações icon">
+        <mat-icon>flag</mat-icon>
+        <span>Autorizações</span>
+      </button>
+    </mat-drawer>
+  
+    <!--* Main content -->
+    <div class="example-sidenav-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-container>
+</div>

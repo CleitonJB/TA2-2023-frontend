@@ -1,0 +1,68 @@
+#app-page {
+    width: 100vw;
+    height: 100vh;
+}
+
+mat-toolbar#main-toolbar {
+    position: relative;
+    z-index: 100;
+    height: 5vh;
+
+    background: var(--tgp_primary_light);
+    color: var(--tgp_text_light);
+
+    span#toolbar-title {
+        font-size: 2rem;
+    }
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+span#time-period-message {
+    font-size: 1.5rem;
+}
+
+mat-drawer-container.example-container {
+    width: 100vw;
+    height: 95vh;
+}
+  
+mat-drawer.example-sidenav {
+    width: 15vw;
+    min-width: 15vw;
+    max-width: 15vw;
+    box-sizing: border-box;
+
+    background: var(--tgp_primary_dark);
+    color: var(--tgp_text_light);
+    
+    display: flex;
+    flex-direction: column;
+
+    button.menu-item {
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid var(--tgp_text_dark);
+
+        background: var(--tgp_primary_dark);
+        color: var(--tgp_text_light);
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        padding: 10px 0px 10px 20px;
+
+        span {
+            margin-left: 10px;
+            font-size: 1.3rem;
+        }
+    }
+}  
+
+.example-sidenav-content {
+    height: 100%;
+    background-color: lightgray;
+}

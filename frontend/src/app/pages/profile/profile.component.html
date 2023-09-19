@@ -1,0 +1,70 @@
+<div class="profile-page">
+    <form *ngIf="currentUser != null" [formGroup]="formGroup">
+        <!-- <h2>Role: {{ currentUser.role | roleToString }}</h2><br><br> -->
+        <!--* Linha 1 -->
+        <div class="row pb-2">
+            <!--* Role -->
+            <div class="col-2">
+                <mat-form-field appearance="outline">
+                    <mat-label>Role</mat-label>
+                    <mat-select [disabled]="currentUser.role != ROLES.Gerente && currentUser.role != ROLES.Diretor" formControlName="role">
+                      <mat-option *ngFor="let role of roles_options" [value]="role.value">
+                        {{ role.label }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </div>
+        </div>
+
+        <!--* Linha 2 -->
+        <div class="row pb-2">
+            <!--* Name -->
+            <div class="col">
+                <label class="form-label">Nome</label>
+                <input type="text" class="form-control rounded-field" formControlName="name">
+            </div>
+            <!--* Full name -->
+            <div class="col">
+                <label class="form-label">Nome completo</label>
+                <input type="text" class="form-control rounded-field" formControlName="namefull">
+            </div>
+        </div>
+        
+        <!--* Linha 3 -->
+        <div class="row pb-2">
+            <!--* Password -->
+            <div class="col">
+                    <label class="form-label">Senha</label>
+                    <input type="password" class="form-control rounded-field" formControlName="password">
+            </div>
+            <!--* Email -->
+            <div class="col">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control rounded-field" formControlName="email">
+            </div>
+        </div>
+        
+        <!--* Linha 4 -->
+        <div class="row pb-2">
+            <!--* Cellphone -->
+            <div class="col-6">
+                <label class="form-label">Telefone</label>
+                <input type="text" class="form-control rounded-field" formControlName="cellphone">
+            </div>
+            <!--* BTN - Reset passoword -->
+            <div class="col-3">
+                <button [disabled]="formGroup.invalid" type="button" (click)="updateUser()" class="btn btn-edit btn-rounded">
+                    <mat-icon>edit</mat-icon>
+                    <span>Redefinir senha</span>
+                </button>
+            </div>
+            <!--* BTN - Delete user -->
+            <div class="col-3">
+                <button [disabled]="formGroup.invalid" type="button" (click)="deleteUser()" class="btn btn-cancel btn-rounded align-bottom">
+                    <mat-icon>delete</mat-icon>
+                    <span>Excluir conta</span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
